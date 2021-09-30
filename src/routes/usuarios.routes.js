@@ -7,7 +7,7 @@ router.get('/', Usuarios.Usuarios);
 
 router.post('/nuevos', Usuarios.CrearUsuario);
 
-router.put('/', Usuarios.ActualizarUsuario);
+router.post('/Login', Usuarios.InicioSesion);
 
 router.delete('/Eliminar/:id', Usuarios.EliminarUsuario);
 
