@@ -5,6 +5,7 @@ import * as options from './utils/swagger';
 import db from './database';
 import usuariosRoutes from './routes/usuarios.routes';
 import productosRoutes from './routes/productos.routes';
+import ordenesRoutes from './routes/order.routes';
 
 const swaggerSpecs = swaggerJSDoc(options.swaggerOptions);
 const app = express();
@@ -18,6 +19,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 app.use('/usuarios', usuariosRoutes);
 app.use('/productos', productosRoutes);
+app.use('/ordenes', ordenesRoutes);
 
 // Starting the server
 db.sequelize.sync({ force: false })

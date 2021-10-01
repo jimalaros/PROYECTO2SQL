@@ -6,10 +6,6 @@ export default ( sequelize , DataTypes ) => {
         DirecciónUsuario: {
             type:DataTypes.STRING,
             allowNull: false
-        },
-        MediodePago: {
-            type:DataTypes.STRING,
-            allowNull: false
         }
     });
     return Orden;

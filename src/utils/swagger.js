@@ -23,8 +23,8 @@ export const swaggerOptions = {
             "description": "Todos los productos del sistema"
           },
           {
-            "name": "Pedidos",
-            "description": "Todos los pedidos de los usuarios"
+            "name": "Ordenes",
+            "description": "Todas las ordenes de los usuarios"
           },
         ],
         "paths": {
@@ -448,20 +448,20 @@ export const swaggerOptions = {
               }
             }
           },
-          "/pedidos": {
+          "/ordenes": {
             "get": {
               "tags": [
-                "Pedidos"
+                "Ordenes"
               ],
-              "summary": "Para que los administradores y usuarios vean todos los pedidos realizados",
-              "description": "Los administradores y usuarios podrán ver todos los pedidos registrados en el sistema",
+              "summary": "Para que los administradores y usuarios vean todas las ordenes realizadas",
+              "description": "Los administradores y usuarios podrán ver todas las ordenes registradas en el sistema",
               "responses": {
                 "200": {
                   "description": "Ok",
                   "content": {
                     "application/json": {
                       "schema": {
-                        "$ref": "#/components/schemas/Pedido"
+                        "$ref": "#/components/schemas/Orden"
                       }
                     }
                   }
@@ -487,12 +487,12 @@ export const swaggerOptions = {
               }
             }
           },
-          "/pedidos/Crear": {
+          "/ordenes/nuevas": {
             "post": {
               "tags": [
-                "Pedidos"
+                "Ordenes"
               ],
-              "summary": "Para empezar a llenar el esquema de pedidos",
+              "summary": "Para empezar a llenar el esquema de las ordenes",
               "description": "Para empezar a llenar datos",
               "responses": {
                 "201": {
@@ -516,21 +516,21 @@ export const swaggerOptions = {
               }
             }
           },
-          "/pedidos/Ordenar/{id}": {
+          "/ordenes/Ordenar/{id}": {
             "post": {
               "tags": [
-                "Pedidos"
+                "Ordenes"
               ],
-              "summary": "Para que los usuarios terminen de crear sus pedidos en el sistema",
-              "description": "Para terminar de crear el pedido",
+              "summary": "Para que los usuarios terminen de crear sus ordenes en el sistema",
+              "description": "Para terminar de crear la orden",
               "parameters": [
                 {
                   "in": "path",
                   "name": "id",
                   "required": true,
                   "schema": {
-                    "type": "string",
-                    "example": "600b365c79bdd616403fc73a"
+                    "type": "number",
+                    "example": 1
                   }
                 }
               ],
@@ -538,7 +538,7 @@ export const swaggerOptions = {
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/Pedido"
+                      "$ref": "#/components/schemas/DatosOrden"
                     }
                   }
                 }
@@ -592,21 +592,21 @@ export const swaggerOptions = {
               }
             }
           },
-          "/pedidos/Editar/{id}": {
+          "/ordenes/{id}": {
             "put": {
               "tags": [
-                "Pedidos"
+                "Ordenes"
               ],
-              "summary": "Para que los usuarios editen pedidos mientras no los hayan confirmado",
-              "description": "Para editar propiedades de los pedidos existentes",
+              "summary": "Para que los usuarios editen las ordenes",
+              "description": "Para editar propiedades de las ordenes existentes",
               "parameters": [
                 {
                   "in": "path",
                   "name": "id",
                   "required": true,
                   "schema": {
-                    "type": "string",
-                    "example": "600b365c79bdd616403fc73a"
+                    "type": "number",
+                    "example": 1
                   }
                 }
               ],
@@ -614,7 +614,7 @@ export const swaggerOptions = {
                 "content": {
                   "application/json": {
                     "schema": {
-                      "$ref": "#/components/schemas/Pedido"
+                      "$ref": "#/components/schemas/DatosOrden"
                     }
                   }
                 }
@@ -668,10 +668,10 @@ export const swaggerOptions = {
               }
             }
           },
-          "/pedidos/Eliminar/{id}": {
+          "/ordenes/Eliminar/{id}": {
             "delete": {
               "tags": [
-                "Pedidos"
+                "Ordenes"
               ],
               "summary": "Para que los administradores eliminen pedidos del sistema",
               "description": "Para eliminar alguno de los pedidos existentes",
@@ -682,8 +682,8 @@ export const swaggerOptions = {
                   "description": "Identificador del producto",
                   "required": true,
                   "schema": {
-                    "type": "string",
-                    "example": "600b365c79bdd616403fc73b"
+                    "type": "number",
+                    "example": 1
                   }
                 }
               ],
@@ -790,35 +790,70 @@ export const swaggerOptions = {
                 }
               }
             },
-            "Pedido": {
+            "Orden": {
               "type": "object",
               "required": [
-                "nombres",
-                "cantidades",
-                "mediodepago",
-                "estado"
+                "NombreUsuario",
+                "DireccionUsuario",
+                "UsuarioId",
+                "NombreProducto",
+                "PrecioProducto",
+                "Cantidad",
+                "MediodePago"
               ],
               "properties": {
-                "nombres": {
-                  "type": "array",
-                  "items": {},
-                  "example": ["Hamburguesa","Coca cola"],
+                "NombreUsuario": {
+                  "type": "string",
+                  "example": "Alexander"
                 },
-                "cantidades": {
-                  "type": "array",
-                  "items": {},
-                  "example": [3,2],
+                "DireccionUsuario": {
+                  "type": "string",
+                  "example": "Carrera 10 #8-18"
                 },
-                "mediodepago": {
+                "UsuarioId": {
+                  "type": "number",
+                  "example": 2
+                },
+                "NombreProducto": {
+                  "type": "string",
+                  "example": "Hamburguesa"
+                },
+                "PrecioProducto": {
+                  "type": "number",
+                  "example": 10000
+                },
+                "Cantidad": {
+                  "type": "number",
+                  "example": 1
+                },
+                "MediodePago": {
                   "type": "string",
                   "example": "Efectivo"
                 },
-                "estado": {
-                  "type": "string",
-                  "example": "Abierto"
-                }
               }
-            }
+            },
+            "DatosOrden": {
+              "type": "object",
+              "required": [
+                "ProductoId",
+                "Cantidad",
+                "MediodePago"
+              ],
+              "properties": {
+                "ProductoId": {
+                  "type": "number",
+                  "example": 1
+                },
+                "Cantidad": {
+                  "type": "number",
+                  "example": 1
+                },
+                "MediodePago": {
+                  "type": "string",
+                  "example": "Efectivo"
+                },
+              }
+            },
           }
         }
       },

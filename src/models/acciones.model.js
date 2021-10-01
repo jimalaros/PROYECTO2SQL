@@ -1,5 +1,5 @@
 export default ( sequelize , DataTypes ) => {
-    const Acción = sequelize.define('Acciónes', {
+    const Acción = sequelize.define('Actions', {
         NombreProducto:{
             type: DataTypes.STRING,
             allowNull: false
@@ -12,6 +12,10 @@ export default ( sequelize , DataTypes ) => {
             type:DataTypes.FLOAT,
             allowNull: false,
             defaultValue: 1
+        },
+        MediodePago: {
+            type:DataTypes.STRING,
+            allowNull: false
         }
     });
     return Acción;

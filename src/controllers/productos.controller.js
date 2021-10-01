@@ -51,8 +51,8 @@ export const EliminarProducto = async (req, res) => {
         });
         if(BuscarProducto){
             await db.Producto.destroy({ where: { id } });
-            res.status(200).json('Usuario eliminado');
-        } else { res.status(400).json({msg: 'No se encontro el usuario en la base de datos'}); }
+            res.status(200).json('Producto eliminado');
+        } else { res.status(400).json({msg: 'No se encontro el producto en la base de datos'}); }
     } catch (error) { res.status(404).json(error); } 
 };
 
